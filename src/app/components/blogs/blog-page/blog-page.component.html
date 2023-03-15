@@ -1,0 +1,34 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="max-w-3xl w-full mx-auto my-8 p-8 bg-white rounded-lg shadow-lg">
+        <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
+            class="flex items-center text-gray-900 hover:text-gray-600 transition-colors duration-300">
+            <svg class="w-6 h-6 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 19.5L3.5 13L10 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M16 19.5L9.5 13L16 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            Back to home
+        </a>
+        <br />
+        <img class="w-full h-64 object-cover object-center rounded-lg" [src]="blog?.imageUrl" alt="Blog Image">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-2">{{ blog?.title }}</h2>
+            <p class="text-gray-400 text-base mb-4 ">{{ blog?.description }}</p>
+            <div class="mt-6 prose">
+                <ng-container *ngIf="blog?.content">
+                    <ng-container *ngFor="let part of blog?.content?.split('.')">
+                        <div class="mb-6">
+                            <p>{{ part }}.</p>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="flex items-center justify-between">
+                <p class="text-gray-600 text-sm">Written by <span class="font-bold">OpenAI davinci-003</span></p>
+                <p class="text-gray-600 text-sm">Published on <span class="font-bold">{{ blog?.createdAt |dateFormatter
+                        }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>

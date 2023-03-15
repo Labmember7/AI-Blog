@@ -5,11 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BlogsFetcherService } from './services/blogs-fetcher.service';
 import { BlogsComponent } from './components/blogs/blogs.component';
+import { BlogCardComponent } from './components/blogs/blog-card/blog-card.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { BlogPageComponent } from './components/blogs/blog-page/blog-page.component';
+import { DateFormatterPipe } from './shared/pipes/date-formatter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogsComponent,
+    BlogCardComponent,
+    LoadingComponent,
+    BlogPageComponent,
+    DateFormatterPipe,
   ],
   imports: [
     BrowserModule,
