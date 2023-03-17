@@ -1,6 +1,10 @@
 {
   "name": "ai-blog",
   "version": "0.0.0",
+  "author": {
+    "email": "basemzarai@gmail.com",
+    "name": "Bacem Zarai"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
