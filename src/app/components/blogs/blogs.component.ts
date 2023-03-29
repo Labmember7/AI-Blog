@@ -19,7 +19,6 @@ export class BlogsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (parseInt(localStorage.getItem('page')!)) {
       this.page = parseInt(localStorage.getItem('page')!);
-      console.log(this.page, localStorage.getItem('page'));
     }
     this.isLoading = true;
     try {
