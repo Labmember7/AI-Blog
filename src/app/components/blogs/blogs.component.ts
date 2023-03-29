@@ -12,10 +12,15 @@ export class BlogsComponent implements OnInit, OnDestroy {
   blogs: Blog[] = [];
   subscription: Subscription = new Subscription();
   isLoading: boolean = true;
-
+  page = 1;
+  pageSize = 12;
   constructor(private blogFetcher: BlogsFetcherService) { }
 
   ngOnInit(): void {
+    if (parseInt(localStorage.getItem('page')!)) {
+      this.page = parseInt(localStorage.getItem('page')!);
+      console.log(this.page, localStorage.getItem('page'));
+    }
     this.isLoading = true;
     try {
       this.subscription = this.blogFetcher.getBlogs().subscribe({
@@ -30,6 +35,9 @@ export class BlogsComponent implements OnInit, OnDestroy {
       console.log(error)
     }
 
+  }
+  setPage() {
+    localStorage.setItem('page', this.page + "")
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

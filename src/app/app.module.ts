@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,12 @@ import { BlogCardComponent } from './components/blogs/blog-card/blog-card.compon
 import { LoadingComponent } from './components/loading/loading.component';
 import { BlogPageComponent } from './components/blogs/blog-page/blog-page.component';
 import { DateFormatterPipe } from './shared/pipes/date-formatter.pipe';
+import { TimeSincePipe } from './shared/pipes/time-since.pipe';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { GenerateBlogComponent } from './components/generate-blog/generate-blog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CacheInterceptor } from './shared/interceptors/cache.interceptor';
+import { SortByMostRecentPipe } from './shared/pipes/sort-by-most-recent.pipe';
 
 @NgModule({
   declarations: [
@@ -18,13 +24,22 @@ import { DateFormatterPipe } from './shared/pipes/date-formatter.pipe';
     LoadingComponent,
     BlogPageComponent,
     DateFormatterPipe,
+    TimeSincePipe,
+    NavigationBarComponent,
+    GenerateBlogComponent,
+    SortByMostRecentPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
-  providers: [BlogsFetcherService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CacheInterceptor,
+    multi: true
+  }, BlogsFetcherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

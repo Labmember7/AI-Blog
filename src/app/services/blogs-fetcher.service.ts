@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Blog } from '../shared/models/blog';
@@ -18,9 +18,10 @@ export class BlogsFetcherService {
     imageUrl: "Fallback",
   }
   private blogs: Blog[] = [];
+  private API_URL = process.env.NG_APP_API_URL
   constructor(private http: HttpClient) { }
   getBlogs(): Observable<Blog[]> {
-    return this.http.get<any>('http://localhost:3000/blogs').pipe(
+    return this.http.get<any>(this.API_URL).pipe(
       map(response => {
         this.blogs = response as Blog[];
         return response;
@@ -28,7 +29,14 @@ export class BlogsFetcherService {
     );
   }
   getBlogById(id: string): Observable<Blog> {
-    return this.http.get<any>(`http://localhost:3000/blogs/${id}`).pipe(
+    return this.http.get<any>(`${this.API_URL}/${id}`).pipe(
+      map(response => response)
+    );
+  }
+  getGeneratedBlog(): Observable<Blog> {
+    const headers = new HttpHeaders().set('Interceptor-Skip', '');
+
+    return this.http.get<any>(`${this.API_URL}/openai`, { headers: headers }).pipe(
       map(response => response)
     );
   }

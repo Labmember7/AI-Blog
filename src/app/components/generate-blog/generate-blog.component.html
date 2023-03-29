@@ -1,0 +1,17 @@
+<div class="flex justify-center items-start py-4">
+    <button (click)="generateBlog()" [disabled]="isLoading"
+        class="py-4 px-8 bg-lime-400 text-black font-bold rounded-lg shadow-lg">
+        <span *ngIf="!isLoading">Generate AI-Blog</span>
+        <span *ngIf="isLoading">Loading...</span>
+    </button>
+</div>
+<div *ngIf="isReady" class="flex items-center justify-center bg-gray-100">
+    <div class="max-w-3xl w-full mx-auto my-8 p-8 bg-white rounded-lg shadow-lg">
+        <app-blog-card class="m-8" [blog]="blog"></app-blog-card>
+    </div>
+</div>
+<div *ngIf="isError" class="flex items-center justify-center bg-gray-100">
+    <div class="max-w-3xl w-full mx-auto my-8 p-8 bg-white rounded-lg shadow-lg">
+        <h1>{{ isError }}</h1>
+    </div>
+</div>

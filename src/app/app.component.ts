@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  isDarkTheme: boolean = false;
+  toggleTheme() {
+    console.log(this.isDarkTheme)
+    this.isDarkTheme = !this.isDarkTheme;
+  }
 }
