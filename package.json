@@ -1,6 +1,10 @@
 {
-  "name": "angular-tailwind-playground",
-  "version": "0.0.0",
+  "name": "ai-blog",
+  "version": "1.0.0",
+  "author": {
+    "email": "basemzarai@gmail.com",
+    "name": "Bacem ZARAI"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
